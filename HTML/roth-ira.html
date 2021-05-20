@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/CSS/roth-ira.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Roth IRA Calculator</title>
+</head>
+<body>
+  <div class="roth-ira__form-container">
+    <form class="roth-ira-calculator form-group">
+      <div class="roth-ira-container">
+        <section class="roth-ira-heading">
+          <h2 class="bacc-heading">Roth Ira vs Traditional IRA Calculator</h2>
+          <p class="bacc__sub-heading">Calculate your Roth IRA Stuff</p>
+        </section>
+      </div>
+      <div class="two-input-row">
+        <div class="starting-balance form-group">
+          <label for="sb" class="calc-label">Starting Balance</label>
+          <div class="input-container">
+            <div class="before-input-box">$</div>
+            <input type="number" class="sb" id="sb" value='0'>
+          </div>
+        </div>
+        <div class="annual-contribution form-group"> 
+          <label for="ac" class="calc-label">Annual Contribution</label>
+          <div class="input-container">
+            <div class="before-input-box">$</div>
+            <input type="number" class="ac" id="ac" value='6000'>
+          </div>
+        </div>
+      </div>
+      <div class="two-input-row">
+        <div class="roth-age form-group"> 
+          <label for="age" class="calc-label">Age</label>
+          <div class="input-container">
+            <input type="number" class="age" id="age" value='30'>
+          </div>
+        </div>
+        <div class="expected-retirement form-group"> 
+          <label for="retirement" class="calc-label">Expected Retirement Age</label>
+          <div class="input-container">
+            <input type="number" class="retirement" id="retirement" value='75'>
+          </div>
+        </div>
+      </div>
+      <div class="two-input-row">
+        <div class="rate-of-return form-group"> 
+          <label for="ror" class="calc-label">Expected Rate of Return</label>
+          <div class="input-container">
+            <div class="before-input-box">%</div>
+            <input type="number" class="ror" steps='0.1' id="ror" value='10'>
+          </div>
+        </div>
+        <div class="marginal-tax-rate form-group"> 
+          <label for="mtr" class="calc-label">Marginal Tax Rate</label> 
+          <div class="input-container">
+            <div class="before-input-box">%</div>
+            <input type="number" class="mtr" id="mtr" value='37'>
+          </div>
+        </div>
+      </div>
+      <div id="submit-btn__container">
+        <button id="submit">Calculate</button>
+      </div>
+    </form>
+    <br><br>
+    <div class="roth-ira-results">
+      <br>
+      <canvas id="myChart" width="400" height="200"></canvas>
+      <div class="catch-up-contributions"></div>
+      <div class="roth-ira-total"></div>
+      <div class="taxable-savings-total"></div>
+    </div>
+  </div>
+
+  <div class="report-modal">
+    <div class="report-modal__container">
+
+    </div>
+  </div>
+  <script src="/JS/chart.js"></script>
+  <script src="/JS/roth-ira-ui.js"></script>
+  <script src="/JS/roth-ira-itemCtrl.js"></script>
+  <script src="/JS/roth-ira-calculations.js"></script>
+  <script src="/JS/roth-ira-app.js"></script>
+</body>
+</html>
