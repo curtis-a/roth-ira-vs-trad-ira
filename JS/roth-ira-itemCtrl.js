@@ -4,9 +4,11 @@ const DataCtrl = (function(){
     totalContributionsArr: [],
     marginalTaxRateArr: [],
     tsArr: [],
+    chartLabels: [],
     tsRateOfReturnArr: [],
     taxableSavings: 0,
     totalRothIra: 0,
+    ytp: 0
   }
 
   const taxRates = {
@@ -73,6 +75,13 @@ const DataCtrl = (function(){
       c.tsRateOfReturnArr = [];
       c.taxableSavings = 0;
       c.totalRothIra = 0;
-    }
+    },
+    getLabels:(ytp) => {
+      let i;
+      for(i = 0; i < ytp; i++) {
+        let j = i;
+        calculationArrays.chartLabels.push(`Year ${j}`)
+      }
+    },
     }
 })()

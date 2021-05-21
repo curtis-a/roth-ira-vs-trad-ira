@@ -4,7 +4,7 @@ Chart.defaults.elements.line.borderRadius = "180px";
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 6', 'Year 7'],
+        labels: [],
         datasets: [{
             label: 'Roth IRA',
             data: [1, 5, 10, 12, 15, 18],
@@ -28,21 +28,27 @@ var myChart = new Chart(ctx, {
             tension: 0.2
         }, {
           type: 'line',
-          label: 'Traditional IRA',
+          label: `Traditional IRA INSERT CALLBACK`,
           data: [1, 2, 4, 5, 6, 7, 8, 9],
           backgroundColor: 'rgba(255, 159, 64, 0.4)'
         }]
     },
     options: {
+      plugins: {
+        legend: {
+          title: {
+            display: true,
+          }
+        }
+      },
+      responsive: true,
+      maintaimAspectRation: false,
         scales: {
             y: {
-                beginAtZero: true,
-                ticks: {
-                  labelY: (value, index, values) => {
-                    return '$' + value
-                  }
-                }
+              beginAtZero: false,
             }
         }
     }
 });
+
+myChart.options.plugins.legend.position = 'right';

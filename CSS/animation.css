@@ -1,0 +1,179 @@
+#tax-calc-loader {
+  position: absolute; 
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255,0.9);
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: all 1s ease-in;
+  display: none;
+  /* opacity: 0; */
+}
+
+.highlight-color {
+  color: #ba9f2a;
+}
+
+.loader-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+}
+
+.loader-icon {
+  position: absolute;
+  color: #ba9f2a
+}
+
+.minus {
+  top: 20%;
+  font-size: 1.5rem;
+  transform: rotate(20deg);
+  animation: iconanim6 9s ease-in forwards infinite;
+}
+.multiply {
+  top: 70%;
+  font-size: .7rem;
+  transform: rotate(20deg);
+  animation: iconanim5 11s ease-in forwards infinite;
+}
+.plus {
+  top: 62%;
+  right: 20%;
+  font-size: 1.4rem;
+  transform: rotate(100deg);
+  animation: iconanim4 8s ease-in forwards infinite;
+}
+.divide {
+  top: 25%;
+  right: 21%;
+  font-size: 1.2rem;
+  transform: rotate(20deg);
+  animation: iconanim3 9s ease-in forwards infinite;
+}
+.multiply-2 {
+  top:30%;
+  left: 20%;
+  font-size: .7rem;
+  transform: rotate(40deg);
+  animation: iconanim2 10s ease-in forwards infinite;
+}
+.divide-2 {
+  top: 65%;
+  left: 16%;
+  font-size: 1.2rem;
+  transform: rotate(20deg);
+  animation: iconanim 10s ease-in forwards infinite;
+}
+.minus-3 {
+  top: 20%;
+  font-size: 1.5rem;
+  transform: rotate(20deg);
+  animation: iconanim6 9s ease-in forwards infinite;
+}
+.multiply-3 {
+  top: 70%;
+  font-size: .7rem;
+  transform: rotate(20deg);
+  animation: iconanim5 11s ease-in forwards infinite;
+}
+.plus-2 {
+  top: 72%;
+  left: 29%;
+  font-size: 1.4rem;
+  transform: rotate(100deg);
+  animation: iconanim1 8s ease-in forwards infinite;
+}
+.divide-4 {
+  top: 15%;
+  left: 31%;
+  font-size: 1.2rem;
+  transform: rotate(20deg);
+  animation: iconanim3 9s ease-in forwards infinite;
+}
+.multiply-4 {
+  top: 10%;
+  left: 60%;
+  font-size: .7rem;
+  transform: rotate(40deg);
+  animation: iconanim2 10s ease-in forwards infinite;
+}
+.divide-5 {
+  top: 85%;
+  left: 66%;
+  font-size: 1.2rem;
+  transform: rotate(20deg);
+  animation: iconanim 10s ease-in forwards infinite;
+}
+
+@keyframes iconanim {
+  0% {
+  transform: rotate(20deg) translate(-10%, -50%)
+  }
+  75% {
+    transform: rotate(80deg) translate(20%, -25%)
+  }
+  100% {
+    transform: rotate(20deg) translate(-10%, -50%);
+  }
+}
+@keyframes iconanim2 {
+  0% {
+  transform: rotate(40deg) translate(50%, 25%)
+  }
+  75% {
+    transform: rotate(150deg) translate(80%, -25%)
+  }
+  100% {
+    transform: rotate(360deg) translate(50%, 25%);
+  }
+}
+@keyframes iconanim3 {
+  0% {
+  transform: rotate(20deg) translate(20%, -50%)
+  }
+  70% {
+    transform: rotate(60deg) translate(80%, -85%)
+  }
+  100% {
+    transform: rotate(20deg) translate(20%, -50%);
+  }
+}
+@keyframes iconanim4 {
+  0% {
+  transform: rotate(100deg) translate(-10%, -50%)
+  }
+  50% {
+    transform: rotate(150deg) translate(80%, -25%)
+  }
+  100% {
+    transform: rotate(100deg) translate(10%, -50%);
+  }
+}
+@keyframes iconanim5 {
+  0% {
+  transform: rotate(20deg) translate(10%, -50%)
+  }
+  50% {
+    transform: rotate(80deg) translate(60%, -75%)
+  }
+  100% {
+    transform: rotate(90deg) translate(10%, -50%);
+  }
+}
+@keyframes iconanim6 {
+  0% {
+  transform: rotate(20deg) translate(30%, 70%)
+  }
+  50% {
+    transform: rotate(80deg) translate(80%, 65%)
+  }
+  100% {
+    transform: rotate(20deg) translate(10%, 70%);
+  }
+}

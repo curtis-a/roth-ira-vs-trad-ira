@@ -3,23 +3,26 @@ const App = (function(RothCalculations, RothUI, DataCtrl){
   // Load Event Listeners 
   const ui = RothUI.getSelectors();
   const loadEventListeners = () => {
-    document.querySelector('#submit').addEventListener('click', calculateRothIRA)
+    document.querySelector('#submit').addEventListener('click', e => {
+      RothUI.displayLoader()
+      calculateRothIRA()
+      e.preventDefault()
+    })
     ui.form.addEventListener('DOMContentLoaded', calculateRothIRA)
   }
 
   const calculateRothIRA = () => {
     DataCtrl.resetArrays()
     RothUI.resetValues()
+    RothUI.checkErrors()
     // Data
     const yearsToPay = ui.retirementAge - ui.age;
-    const rorArr = DataCtrl.getArrays().rateOfReturnArr;
     const tcArr = DataCtrl.getArrays().totalContributionsArr;
     const tsArr = DataCtrl.getArrays().tsArr;
     // Calculations
     RothCalculations.totalContributions(ui.age, ui.retirementAge, ui.annualContributions, ui.startingBalance);
     RothCalculations.RothVsTradCalculations(yearsToPay, ui.rateOfReturn, ui.annualContributions, ui.startingBalance, ui.marginalTaxRate);
-    RothUI.displayTotals(tcArr, tsArr);
-    RothUI.displayChart(tcArr, tsArr, yearsToPay);
+    RothUI.displayChart(tcArr, tsArr, ui.age);
   }
 
   return {

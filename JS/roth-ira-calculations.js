@@ -20,8 +20,8 @@ const RothCalculations = (function(){
       // Reccursion
       if(ytp >= 0){ RothCalculations.RothVsTradCalculations(ytp, ror, ac, totalIncrease, mtr) } 
       else { 
-        console.log(`Roth IRA Calc: ${tcArr[34]}`)
-        console.log(`Taxable Savings Calc: ${tsArr[34]}`)
+        console.log(`Roth IRA Calc: ${tcArr[tcArr.length - 1]}`)
+        console.log(`Traditional IRA Calc: ${tsArr[tsArr.length - 1]}`)
         return 
       }
     },
