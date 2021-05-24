@@ -21,7 +21,7 @@ a {
 }
 
 .input-error::after {
-  content: 'Something Has Gone Wrong';
+  content: attr(data-error);
   display: block;
   color: red;
   position: absolute;
@@ -110,12 +110,13 @@ a {
 
 .two-input-row {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
 }
 
 .two-input-row .form-group {
-  width: 48%
+  width: 100%
 }
 input {
   width: 100%
@@ -146,9 +147,7 @@ input:focus-within {
 
 #submit {
   position: absolute;
-  /* left: 50%; */
-  /* transform: translateX(-50%); */
-  width: 100%;
+  width: 40%;
   margin: auto;
   padding: 9px;
   font-family: inherit;
@@ -158,6 +157,13 @@ input:focus-within {
   background-color: #fff;
   color: #000;
 }
+
+#submit:hover {
+  box-shadow: 0 .1rem 0.2rem rgba(0,0,0,0.2);
+  top: -2px;
+  cursor: pointer
+}
+
 .deposit-percentage-text {
   font-size: .7rem;
   line-height: 1rem;
@@ -226,6 +232,19 @@ input::-webkit-inner-spin-button {
     width: 30%;
     margin-top: 20px
   }
+  .two-input-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .two-input-row .form-group {
+    width: 48%
+  }
+  input {
+    width: 100%
+  }
 }
 
 @media only screen and (min-width: 1000px) {
@@ -239,14 +258,4 @@ input::-webkit-inner-spin-button {
     position: relative;
   }
 
-  #submit:hover {
-    cursor: pointer;
-    background-color: #333;
-    color: #fff;
-    transition: .2s ease-in;
-  }
-  #submit:focus {
-    outline: none !important;
-    border-color: #ba9f2a;
-  }
 }

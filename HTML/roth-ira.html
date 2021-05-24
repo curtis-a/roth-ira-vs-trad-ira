@@ -15,20 +15,20 @@
       <div class="roth-ira-container">
         <section class="roth-ira-heading">
           <h2 class="bacc-heading">Roth Ira vs Traditional IRA Calculator</h2>
-          <p class="bacc__sub-heading">Calculate your Roth IRA Stuff</p>
+          <p class="bacc__sub-heading">Compare how your contributions differ between Roth IRA and Traditional IRA savings</p>
         </section>
       </div>
       <div class="two-input-row">
         <div class="starting-balance form-group">
           <label for="sb" class="calc-label">Starting Balance</label>
-          <div class="input-container">
+          <div class="input-container" data-error="Please Enter a Number 0 or above">
             <div class="before-input-box">$</div>
             <input type="number" class="calc-input sb" id="sb" value='0'>
           </div>
         </div>
         <div class="annual-contribution form-group"> 
           <label for="ac" class="calc-label">Annual Contribution</label>
-          <div class="input-container">
+          <div class="input-container" data-error="For the year 2021/2022 the maximum contribution is $6000">
             <div class="before-input-box">$</div>
             <input type="number" class="calc-input ac" id="ac" value='6000'>
           </div>
@@ -37,30 +37,30 @@
       <div class="two-input-row">
         <div class="roth-age form-group"> 
           <label for="age" class="calc-label">Age</label>
-          <div class="input-container">
+          <div class="input-container"  data-error="Your age must be lower than your retirement age">
             <input type="number" class="calc-input age" id="age" value='30'>
           </div>
         </div>
         <div class="expected-retirement form-group"> 
           <label for="retirement" class="calc-label">Expected Retirement Age</label>
-          <div class="input-container">
-            <input type="number" class="calc-input retirement" id="retirement" value='65'>
+          <div class="input-container" data-error="Your age must be lower than your retirement age">
+            <input type="number" class="calc-input retirement" id="retirement" value='65' >
           </div>
         </div>
       </div>
       <div class="two-input-row">
         <div class="rate-of-return form-group"> 
           <label for="ror" class="calc-label">Expected Rate of Return</label>
-          <div class="input-container">
+          <div class="input-container" data-error="Please enter a rate of return between 0 - 12%">
             <div class="before-input-box">%</div>
-            <input type="number" class="calc-input ror" steps='0.1' id="ror" value='10'>
+            <input type="number" class="calc-input ror" steps='0.1' id="ror" value='10' >
           </div>
         </div>
         <div class="marginal-tax-rate form-group"> 
           <label for="mtr" class="calc-label">Marginal Tax Rate</label> 
-          <div class="input-container">
+          <div class="input-container" data-error="Highest tax rate for the US is 37%">
             <div class="before-input-box">%</div>
-            <input type="number" class="calc-input mtr" id="mtr" value='37'>
+            <input type="number" class="calc-input mtr" id="mtr" value='37' >
           </div>
         </div>
       </div>
@@ -99,10 +99,7 @@
     </div>
     <div class="tcalc-warning">
       <p class="warning-content">
-        <span class="text-bold">IMPORTANT!</span> This calculator makes assumptions to estimate your tax liability. There are many more
-        variables to be considered when filing your tax
-        return. For a more accurate result it is worth
-        contacting a professional tax advisor.
+        <span class="text-bold">IMPORTANT!</span> The representation of the Traditional IRA would appear slightly different to this in reality. This is due to the manner in which Traditional IRA's are taxed. Rather than being taxed across the years of contributions. Traditional ISA's are not taxed until withdrawral, at which point they are taxed at your marginal tax rate.
       </p>
       </div>
   </div>

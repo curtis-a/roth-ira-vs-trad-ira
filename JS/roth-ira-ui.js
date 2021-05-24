@@ -16,21 +16,28 @@ const RothUI = (function(){
       return selectors
     },
     checkErrors: () => {
-      const newArr = [];
-      selectors.inputs.forEach(i => newArr.push(parseFloat(i.value)))
+      const floatedInputArr = [];
+      selectors.inputs.forEach(i => {
+        document.querySelector('#submit').disabled = false;
+        i.parentElement.classList.remove('input-error')
+        floatedInputArr.push(parseFloat(i.value))
+      });
       // Error Checking
-      for(let i = 0; i < newArr.length - 1; i++) {
-        if(newArr[i] < 0) RothUI.inputError(selectors.inputs[i])
+      for(let i = 0; i < floatedInputArr.length - 1; i++) {
+        if(floatedInputArr[i] < 0) RothUI.inputError(selectors.inputs[i]);
       }
-      if(newArr[4] > 12) RothUI.inputError(selectors.inputs[4])
-      if((selectors.retirementAge - selectors.age) <= 0) {
-        RothUI.inputError(selectors.inputs[2])
-        RothUI.inputError(selectors.inputs[3])
+      if((floatedInputArr[3] - floatedInputArr[2]) <= 0) {
+        RothUI.inputError(selectors.inputs[2]);
+        RothUI.inputError(selectors.inputs[3]);
       }
+      if(floatedInputArr[5] > 37) RothUI.inputError(selectors.inputs[5]);
+      if(floatedInputArr[4] > 12) RothUI.inputError(selectors.inputs[4]);
+      if(floatedInputArr[1] > 6000) RothUI.inputError(selectors.inputs[1]);
+
     },
     inputError: (x) => {
-      x.parentElement.classList.add('input-error')
-      console.log(x.parentElement)
+      x.parentElement.classList.add('input-error');
+      document.querySelector('#submit').disabled = true;
     },
     resetValues: () => {
       selectors.startingBalance = parseFloat(document.querySelector('.sb').value)
@@ -77,11 +84,5 @@ const RothUI = (function(){
     tablePagination: () => {
       // Handle Table Pagination
     },
-    showCalculationError: () => {
-      // Handle Calculation Errors
-    },
-    showInputError: () => {
-      // Handle Input Errora
-    } 
   }
 })()
