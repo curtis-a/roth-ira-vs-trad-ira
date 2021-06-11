@@ -103,6 +103,76 @@ a {
   line-height: 1.6rem;
 }
 
+.label-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.tooltip-container {
+  position: relative;
+}
+.tooltip-icon {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  border: 1px solid transparent;
+  background-color: #BA992F;
+  height: 17px;
+  width: 17px; 
+  border-radius: 50%;
+  padding: 5px;
+  justify-content: center;
+  font-size: .7rem;
+}
+
+.tooltip-content {
+  position: absolute;
+  border-radius: 5px;
+  top: -90px;
+  height: 0;
+  overflow: hidden;
+  left: 25px;
+  opacity: 0;
+  padding: 10px;
+  font-size: .8rem;
+  width: 400px;
+  background-color: #e6e6e6;
+  z-index:3;
+  transition: all ease-in .3s;
+}
+
+.tooltip-content::after {
+  content: "";
+  position: absolute;
+  display: block;
+  height: 0px;
+  width: 0px;
+  left: -9px;
+  bottom: -7px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  transform: rotate(46deg);
+  z-index: 2;
+  border-top: calc((10px + 10px) * 0.866) solid #e6e6e6;
+  transition: all ease-in .5s;
+}
+
+.tooltip-icon:hover {
+  cursor: pointer;
+}
+
+.tooltip-container:hover > .tooltip-content{
+  height: 90px;
+  overflow: auto;
+  display: block;
+  top: -101px;
+  opacity: 1;
+  cursor: pointer;
+}
+
+
 .form-group label {
   text-transform: uppercase;
   font-weight: 600;

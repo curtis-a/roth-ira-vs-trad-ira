@@ -20,14 +20,30 @@
       </div>
       <div class="two-input-row">
         <div class="starting-balance form-group">
-          <label for="sb" class="calc-label">Starting Balance</label>
+          <div class="label-container">
+            <label for="sb" class="calc-label">Starting Balance</label>
+            <div class="tooltip-container">
+              <span class="tooltip-icon">?</span>
+              <div class="tooltip-content">
+                <p class="tooltip-text">Please enter your current balance of your Roth IRA/ Traditional IRA. If you do not already have you feel free to leave it at zero. Alternitavely enter the balance you plan to start off</p>
+              </div>
+            </div>
+          </div>
           <div class="input-container" data-error="Please Enter a Number 0 or above">
             <div class="before-input-box">$</div>
             <input type="number" class="calc-input sb" id="sb" value='0'>
           </div>
         </div>
-        <div class="annual-contribution form-group"> 
-          <label for="ac" class="calc-label">Annual Contribution</label>
+        <div class="annual-contribution form-group">
+          <div class="label-container">
+            <label for="ac" class="calc-label">Annual Contribution</label>
+            <div class="tooltip-container">
+              <span class="tooltip-icon">?</span>
+              <div class="tooltip-content">
+                <p class="tooltip-text">Please enter your current balance of your Roth IRA/ Traditional IRA. If you do not already have you feel free to leave it at zero. Alternitavely enter the balance you plan to start off</p>
+              </div>
+            </div>
+          </div> 
           <div class="input-container" data-error="For the year 2021/2022 the maximum contribution is $6000">
             <div class="before-input-box">$</div>
             <input type="number" class="calc-input ac" id="ac" value='6000'>
@@ -36,28 +52,60 @@
       </div>
       <div class="two-input-row">
         <div class="roth-age form-group"> 
-          <label for="age" class="calc-label">Age</label>
+          <div class="label-container">
+            <label for="age" class="calc-label">Age</label>
+            <div class="tooltip-container">
+              <span class="tooltip-icon">?</span>
+              <div class="tooltip-content">
+                <p class="tooltip-text">Please enter your current balance of your Roth IRA/ Traditional IRA. If you do not already have you feel free to leave it at zero. Alternitavely enter the balance you plan to start off</p>
+              </div>
+            </div>
+          </div>
           <div class="input-container"  data-error="Your age must be lower than your retirement age">
             <input type="number" class="calc-input age" id="age" value='30'>
           </div>
         </div>
-        <div class="expected-retirement form-group"> 
-          <label for="retirement" class="calc-label">Expected Retirement Age</label>
+        <div class="expected-retirement form-group">
+          <div class="label-container">
+            <label for="retirement" class="calc-label">Expected Retirement Age</label>
+            <div class="tooltip-container">
+              <span class="tooltip-icon">?</span>
+              <div class="tooltip-content">
+                <p class="tooltip-text">Please enter your current balance of your Roth IRA/ Traditional IRA. If you do not already have you feel free to leave it at zero. Alternitavely enter the balance you plan to start off</p>
+              </div>
+            </div>
+          </div> 
           <div class="input-container" data-error="Your age must be lower than your retirement age">
             <input type="number" class="calc-input retirement" id="retirement" value='65' >
           </div>
         </div>
       </div>
       <div class="two-input-row">
-        <div class="rate-of-return form-group"> 
-          <label for="ror" class="calc-label">Expected Rate of Return</label>
+        <div class="rate-of-return form-group">
+          <div class="label-container">
+            <label for="ror" class="calc-label">Expected Rate of Return</label>
+                        <div class="tooltip-container">
+              <span class="tooltip-icon">?</span>
+              <div class="tooltip-content">
+                <p class="tooltip-text">Please enter your current balance of your Roth IRA/ Traditional IRA. If you do not already have you feel free to leave it at zero. Alternitavely enter the balance you plan to start off</p>
+              </div>
+            </div>
+          </div> 
           <div class="input-container" data-error="Please enter a rate of return between 0 - 12%">
             <div class="before-input-box">%</div>
             <input type="number" class="calc-input ror" steps='0.1' id="ror" value='10' >
           </div>
         </div>
-        <div class="marginal-tax-rate form-group"> 
-          <label for="mtr" class="calc-label">Marginal Tax Rate</label> 
+        <div class="marginal-tax-rate form-group">
+          <div class="label-container">
+            <label for="mtr" class="calc-label">Marginal Tax Rate</label> 
+                        <div class="tooltip-container">
+              <span class="tooltip-icon">?</span>
+              <div class="tooltip-content">
+                <p class="tooltip-text">Please enter your current balance of your Roth IRA/ Traditional IRA. If you do not already have you feel free to leave it at zero. Alternitavely enter the balance you plan to start off</p>
+              </div>
+            </div>
+          </div> 
           <div class="input-container" data-error="Highest tax rate for the US is 37%">
             <div class="before-input-box">%</div>
             <input type="number" class="calc-input mtr" id="mtr" value='37' >

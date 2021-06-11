@@ -76,7 +76,7 @@ const DataCtrl = (function(){
       c.taxableSavings = 0;
       c.totalRothIra = 0;
     },
-    getLabels:(ytp) => {
+    getLabels: async (ytp) => {
       let i;
       for(i = 0; i < ytp; i++) {
         let j = i;

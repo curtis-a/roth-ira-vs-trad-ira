@@ -9,17 +9,7 @@ const App = (function(RothCalculations, RothUI, DataCtrl){
       e.preventDefault()
     })
     ui.form.addEventListener('DOMContentLoaded', calculateRothIRA)
-    ui.inputs.forEach(i => { 
-        i.addEventListener('blur', e => {
-        RothUI.checkErrors(); 
-        if(i.classList.contains('input-error')) {
-          return
-        } else {
-          // calculateRothIRA();
-        }
-      })
-      console.log(i.classList)
-    })
+    ui.inputs.forEach(i => i.addEventListener('blur', RothUI.checkErrors()))
   }
 
   const calculateRothIRA = () => {
