@@ -32,7 +32,7 @@ var myChart = new Chart(ctx, {
       maintaimAspectRation: false,
         scales: {
             y: {
-              beginAtZero: false,
+              beginAtZero: true,
             }
         }
     }

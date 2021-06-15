@@ -61,10 +61,13 @@ const RothUI = (function(){
       if(e.target.classList.contains('tooltip-close')) e.target.parentElement.classList.remove('tooltip-displayed')
     },
     displayChart: (tcArr, tsArr, age) => {
-      myChart.data.labels = []
-      myChart.options.scales.y.max = Math.round(tcArr[tcArr.length - 1]);
-      myChart.data.datasets[0].label = `Roth IRA: $${RothUI.insertCommas(Math.round(tcArr[tcArr.length - 1]))}`
-      myChart.data.datasets[1].label = `Trad IRA: $${RothUI.insertCommas(Math.round(tsArr[tsArr.length - 1]))}`
+      const chartData = myChart.data.datasets
+      if(chartData[1].type === 'bar') RothUI.displayBarChart(tcArr, tsArr)
+      if(chartData[1].type === 'line') RothUI.displayLineChart(tcArr, tsArr, age)
+    },
+    displayLineChart: (tcArr, tsArr, age) => {
+      myChart.options.scales.y.max = Math.round((tcArr[tcArr.length - 1]) + (tcArr[tcArr.length - 1] * 0.15));
+      RothUI.resetChartLabels()
       for(let i = 0; i < tcArr.length; i++) {
         myChart.data.datasets[0].data[i] = tcArr[i]
         myChart.data.datasets[1].data[i] = tsArr[i]
@@ -72,21 +75,44 @@ const RothUI = (function(){
       }      
       myChart.update();   
     },
-    displayBarChart: () => {
-      const tcArr = DataCtrl.getArrays().totalContributionsArr;
-      const tsArr = DataCtrl.getArrays().tsArr;
-      myChart.data.labels = []
-      myChart.data.datasets[0].data[0] = [];
-      myChart.data.datasets[1].data[0] = [];
+    displayBarChart: (tcArr, tsArr) => {
+      RothUI.resetChartLabels()
+      RothUI.createChartLabels()
+      RothUI.resetChartData()
+      myChart.options.scales.y.max = Math.round((tcArr[tcArr.length - 1]) + (tcArr[tcArr.length - 1] * 0.15));
+      RothUI.barChartData(myChart.data.datasets, tcArr, tsArr)
+      myChart.options.scales.x.ticks.align = 'center';
+      myChart.update()
+    },
+    createChartLabels: () => {
       myChart.data.labels[0] = 'Total Roth Ira'
       myChart.data.labels[1] = 'Total Traditional Ira'
-      myChart.data.datasets[0].label = `Roth IRA: $${RothUI.insertCommas(Math.round(tcArr[tcArr.length - 1]))}`;
-      myChart.data.datasets[1].label = `Trad IRA: $${RothUI.insertCommas(Math.round(tsArr[tsArr.length - 1]))}`;
-      myChart.data.datasets[1].type = 'bar'
-      myChart.data.datasets[0].type = 'bar'
-      myChart.data.datasets[0].data[1] = tcArr[tcArr.length -1]
-      myChart.data.datasets[1].data[0] = tsArr[tsArr.length -1]
-      myChart.update()
+    },
+    resetChartLabels: () => myChart.data.labels = [],
+    resetChartData: () => {
+      myChart.data.datasets[0].data = []
+      myChart.data.datasets[1].data = []
+    },
+    barChartData: (chartData, tcArr, tsArr) => {
+      console.log(chartData, tcArr, tsArr)
+      chartData[1].data[0] = tcArr[tcArr.length - 1]
+      chartData[0].data[1] = tsArr[tsArr.length -1]
+      console.log(chartData[0].data)
+    },
+    changeChartType: (tcArr, tsArr, age) => {
+      const chartData = myChart.data.datasets
+      if(chartData[1].type !== 'bar') {
+        chartData[1].type = 'bar'
+        chartData[0].type = 'bar'
+        document.querySelector('.change-chart-type').innerHTML = 'Line Chart'
+        RothUI.displayBarChart(tcArr, tsArr)
+      } 
+      else {
+        chartData[1].type = 'line'
+        chartData[0].type = 'line'
+        document.querySelector('.change-chart-type').innerHTML = 'Bar Chart'
+        RothUI.displayLineChart(tcArr, tsArr, age)
+      }
     },
     insertCommas: (x) => {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
