@@ -9,13 +9,22 @@ const App = (function(RothCalculations, RothUI, DataCtrl){
       e.preventDefault()
     })
     ui.form.addEventListener('DOMContentLoaded', calculateRothIRA)
-    ui.inputs.forEach(i => i.addEventListener('blur', RothUI.checkErrors()))
+    ui.inputs.forEach(i => {
+      let v = i.value
+      i.addEventListener('blur', RothUI.checkErrors(i, v));
+    })
+    ui.tooltips.forEach(tt => {
+      tt.addEventListener('click', RothUI.displayToolTip)
+    })
+    ui.barChartBtn.addEventListener('click', e => {
+      RothUI.displayBarChart()
+      e.preventDefault()
+    })
   }
 
   const calculateRothIRA = () => {
     DataCtrl.resetArrays()
     RothUI.resetValues()
-    RothUI.checkErrors()
     // Data
     const yearsToPay = ui.retirementAge - ui.age;
     const tcArr = DataCtrl.getArrays().totalContributionsArr;

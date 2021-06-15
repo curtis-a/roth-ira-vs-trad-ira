@@ -24,7 +24,8 @@
             <label for="sb" class="calc-label">Starting Balance</label>
             <div class="tooltip-container">
               <span class="tooltip-icon">?</span>
-              <div class="tooltip-content">
+              <div class="tooltip-content tooltip-content__left">
+                <span class="tooltip-close">x</span>
                 <p class="tooltip-text">Please enter your current balance of your Roth IRA/ Traditional IRA. If you do not already have you feel free to leave it at zero. Alternitavely enter the balance you plan to start off</p>
               </div>
             </div>
@@ -39,7 +40,8 @@
             <label for="ac" class="calc-label">Annual Contribution</label>
             <div class="tooltip-container">
               <span class="tooltip-icon">?</span>
-              <div class="tooltip-content">
+              <div class="tooltip-content tooltip-content__right">
+                <span class="tooltip-close">x</span>
                 <p class="tooltip-text">Please enter your current balance of your Roth IRA/ Traditional IRA. If you do not already have you feel free to leave it at zero. Alternitavely enter the balance you plan to start off</p>
               </div>
             </div>
@@ -56,7 +58,8 @@
             <label for="age" class="calc-label">Age</label>
             <div class="tooltip-container">
               <span class="tooltip-icon">?</span>
-              <div class="tooltip-content">
+              <div class="tooltip-content tooltip-content__left">
+                <span class="tooltip-close">x</span>
                 <p class="tooltip-text">Please enter your current balance of your Roth IRA/ Traditional IRA. If you do not already have you feel free to leave it at zero. Alternitavely enter the balance you plan to start off</p>
               </div>
             </div>
@@ -70,7 +73,8 @@
             <label for="retirement" class="calc-label">Expected Retirement Age</label>
             <div class="tooltip-container">
               <span class="tooltip-icon">?</span>
-              <div class="tooltip-content">
+              <div class="tooltip-content tooltip-content__right">
+                <span class="tooltip-close">x</span>
                 <p class="tooltip-text">Please enter your current balance of your Roth IRA/ Traditional IRA. If you do not already have you feel free to leave it at zero. Alternitavely enter the balance you plan to start off</p>
               </div>
             </div>
@@ -86,7 +90,8 @@
             <label for="ror" class="calc-label">Expected Rate of Return</label>
                         <div class="tooltip-container">
               <span class="tooltip-icon">?</span>
-              <div class="tooltip-content">
+              <div class="tooltip-content tooltip-content__left">
+                <span class="tooltip-close">x</span>
                 <p class="tooltip-text">Please enter your current balance of your Roth IRA/ Traditional IRA. If you do not already have you feel free to leave it at zero. Alternitavely enter the balance you plan to start off</p>
               </div>
             </div>
@@ -101,7 +106,8 @@
             <label for="mtr" class="calc-label">Marginal Tax Rate</label> 
                         <div class="tooltip-container">
               <span class="tooltip-icon">?</span>
-              <div class="tooltip-content">
+              <div class="tooltip-content tooltip-content__right">
+                <span class="tooltip-close">x</span>
                 <p class="tooltip-text">Please enter your current balance of your Roth IRA/ Traditional IRA. If you do not already have you feel free to leave it at zero. Alternitavely enter the balance you plan to start off</p>
               </div>
             </div>
@@ -138,6 +144,9 @@
       <br>
       <div class="chart-container" width="600" height="400px">
         <canvas id="myChart" width="125" height="45"></canvas>
+      </div>
+      <div class="barChart-btn">
+        <button>Bar Chart</button>
       </div>
       <div class="figures-container">
         <div class="catch-up-contributions"></div>

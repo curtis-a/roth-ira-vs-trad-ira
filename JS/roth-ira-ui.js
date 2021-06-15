@@ -10,12 +10,16 @@ const RothUI = (function(){
     rothTotal: document.querySelector('.roth-ira-total'),
     taxableSavingsTotal: document.querySelector('.taxable-savings-total'),
     inputs: Array.from(document.querySelectorAll('.calc-input')),
+    tooltips: Array.from(document.querySelectorAll('.tooltip-container')),
+    barChartBtn: document.querySelector('.barChart-btn')
   }
+
+  
   return {
     getSelectors: () => {
       return selectors
     },
-    checkErrors: () => {
+    checkErrors: (i, v) => {
       const floatedInputArr = [];
       selectors.inputs.forEach(i => {
         document.querySelector('#submit').disabled = false;
@@ -47,6 +51,15 @@ const RothUI = (function(){
       selectors.rateOfReturn = parseFloat((document.querySelector('.ror').value) / 100)
       selectors.marginalTaxRate = parseFloat((document.querySelector('.mtr').value) / 100)
     },
+    displayToolTip: (e) => {
+      if(!e.target.classList.contains('tooltip-icon')) return
+      e.target.nextElementSibling.classList.add('tooltip-displayed')
+      e.target.nextElementSibling.addEventListener('click', RothUI.closeToolTip)
+    },
+    closeToolTip: (e) => {
+      if(!e.target.classList.contains('tooltip-close')) return;
+      if(e.target.classList.contains('tooltip-close')) e.target.parentElement.classList.remove('tooltip-displayed')
+    },
     displayChart: (tcArr, tsArr, age) => {
       myChart.data.labels = []
       myChart.options.scales.y.max = Math.round(tcArr[tcArr.length - 1]);
@@ -59,6 +72,22 @@ const RothUI = (function(){
       }      
       myChart.update();   
     },
+    displayBarChart: () => {
+      const tcArr = DataCtrl.getArrays().totalContributionsArr;
+      const tsArr = DataCtrl.getArrays().tsArr;
+      myChart.data.labels = []
+      myChart.data.datasets[0].data[0] = [];
+      myChart.data.datasets[1].data[0] = [];
+      myChart.data.labels[0] = 'Total Roth Ira'
+      myChart.data.labels[1] = 'Total Traditional Ira'
+      myChart.data.datasets[0].label = `Roth IRA: $${RothUI.insertCommas(Math.round(tcArr[tcArr.length - 1]))}`;
+      myChart.data.datasets[1].label = `Trad IRA: $${RothUI.insertCommas(Math.round(tsArr[tsArr.length - 1]))}`;
+      myChart.data.datasets[1].type = 'bar'
+      myChart.data.datasets[0].type = 'bar'
+      myChart.data.datasets[0].data[1] = tcArr[tcArr.length -1]
+      myChart.data.datasets[1].data[0] = tsArr[tsArr.length -1]
+      myChart.update()
+    },
     insertCommas: (x) => {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
@@ -66,13 +95,14 @@ const RothUI = (function(){
       // Create Modal Report
     },
     displayLoader: () => {
-      document.getElementById('tax-calc-loader').style.display = 'block';
-      document.getElementById('tax-calc-loader').style.opacity = 1;
-      document.getElementById('tax-calc-loader').style.transition = 'opacity .2s';
+      const loaderAnim = document.getElementById('tax-calc-loader');
+      loaderAnim.style.display = 'block';
+      loaderAnim.style.opacity = 1;
+      loaderAnim.style.transition = 'opacity .2s';
       setTimeout(()=> {
-        document.getElementById('tax-calc-loader').style.opacity = 0;
-        document.getElementById('tax-calc-loader').style.transition = 'all .2s';
-        document.getElementById('tax-calc-loader').style.display = 'none';
+        loaderAnim.style.opacity = 0;
+        loaderAnim.style.transition = 'all .2s';
+        loaderAnim.style.display = 'none';
       },1500)
     },
     createReport: () => {

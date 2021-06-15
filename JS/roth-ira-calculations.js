@@ -8,6 +8,8 @@ const RothCalculations = (function(){
       const rorArr = DataCtrl.getArrays().rateOfReturnArr;
       const tcArr = DataCtrl.getArrays().totalContributionsArr;
       const tsArr = DataCtrl.getArrays().tsArr;
+      const totalRoth = DataCtrl.getArrays().totalRothIra;
+      const totalTrad = DataCtrl.getArrays().totalTradIra;
       // Calculations
       const yearlyPayment = parseFloat(ac + sb);
       const interest = parseFloat(yearlyPayment * ror);
@@ -24,7 +26,7 @@ const RothCalculations = (function(){
         console.log(`Traditional IRA Calc: ${tsArr[tsArr.length - 1]}`)
         return 
       }
-    },
+    }
   }
 })()
 

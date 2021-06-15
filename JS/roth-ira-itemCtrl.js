@@ -6,7 +6,7 @@ const DataCtrl = (function(){
     tsArr: [],
     chartLabels: [],
     tsRateOfReturnArr: [],
-    taxableSavings: 0,
+    totalTradIra: 0,
     totalRothIra: 0,
     ytp: 0
   }
@@ -82,6 +82,6 @@ const DataCtrl = (function(){
         let j = i;
         calculationArrays.chartLabels.push(`Year ${j}`)
       }
-    },
+    }
     }
 })()
