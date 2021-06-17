@@ -20,6 +20,15 @@ a {
   position: relative
 }
 
+.accent-color {
+  color: #BA992F;
+  font-weight: 700;
+}
+
+.bold-text {
+  font-weight: 700;
+}
+
 .input-error::after {
   content: attr(data-error);
   display: block;
@@ -36,10 +45,10 @@ a {
   flex-direction: column;
 }
 
-.chart-container {
+/* .chart-container {
   width: 100%; 
   margin-bottom: 20px;
-}
+} */
 .roth-ira__form-container {
   margin: 0 auto;
   max-width: 650px;
@@ -49,6 +58,7 @@ a {
   border-top: 2px solid #BA992F;
   background-color: #fff;
   margin-bottom: 100px;
+  overflow: visible;
 }
 
 .roth-ira-total, .taxable-savings-total {
@@ -132,7 +142,7 @@ a {
   display: flex;
   align-items: center;
   border-radius: 5px;
-  bottom: -50px;
+  top: -100px;
   height: fit-content;
   overflow: hidden;
   opacity: 0;
@@ -155,7 +165,7 @@ a {
   z-index: 3;
   height: fit-content;
   display: block;
-  bottom: -155px;
+  top: 20px;
   opacity: 1;
   cursor: pointer;
 }
@@ -319,7 +329,7 @@ input::-webkit-inner-spin-button {
 
 @media only screen and (min-width: 1000px) {
   .roth-ira__form-container {
-    max-width: 900px;
+    max-width: 800px;
     /* display: flex; */
     justify-content: space-around;
   }

@@ -17,36 +17,51 @@ const RothUI = (function(){
     barChartBtn: document.querySelector('.barChart-btn'),
     advSettings: document.getElementById('adv-settings'),
     advSettingsContainer: document.getElementById('advanced-settings__container'),
-    maximiseContributionsCheck: document.getElementById('maximise-contributions')
+    maximiseContributionsCheck: document.getElementById('maximise-contributions'),
+    summaryContainer: document.getElementById('tcalc__summary-container')
   }
   
   return {
     getSelectors: () => {
       return selectors
     },
-    checkErrors: (i, v) => {
+    checkErrors: () => {
       const floatedInputArr = [];
       selectors.inputs.forEach(i => {
-        document.querySelector('#submit').disabled = false;
         i.parentElement.classList.remove('input-error')
         floatedInputArr.push(parseFloat(i.value))
       });
+
       // Error Checking
       for(let i = 0; i < floatedInputArr.length - 1; i++) {
-        if(floatedInputArr[i] < 0) RothUI.inputError(selectors.inputs[i]);
+        if(floatedInputArr[i] < 0) {
+          RothUI.inputError(selectors.inputs[i])
+          return true
+        }
       }
       if((floatedInputArr[3] - floatedInputArr[2]) <= 0) {
         RothUI.inputError(selectors.inputs[2]);
         RothUI.inputError(selectors.inputs[3]);
+        return true
       }
-      if(floatedInputArr[5] > 37) RothUI.inputError(selectors.inputs[5]);
-      if(floatedInputArr[4] > 12) RothUI.inputError(selectors.inputs[4]);
-      if(floatedInputArr[1] > 6000) RothUI.inputError(selectors.inputs[1]);
+      if(floatedInputArr[5] > 37) {
+        RothUI.inputError(selectors.inputs[5]);
+        return true
+      }
+      if(floatedInputArr[4] > 20) {
+        RothUI.inputError(selectors.inputs[4])
+    
+      };
 
+      if(floatedInputArr[1] > 6000) {
+        RothUI.inputError(selectors.inputs[1])
+        return true
+      };
+
+      App.calculateRothIRA()
     },
     inputError: (x) => {
       x.parentElement.classList.add('input-error');
-      document.querySelector('#submit').disabled = true;
     },
     updateRetirementTaxRate: (e) => {
       if(selectors.marginalTaxRateInput.value < selectors.retirementTaxRateInput.value) {
@@ -104,23 +119,23 @@ const RothUI = (function(){
       myChart.data.datasets[1].data = []
     },
     barChartData: (chartData, tcArr, tsArr) => {
-      console.log(chartData, tcArr, tsArr)
-      chartData[1].data[0] = tcArr[tcArr.length - 1]
-      chartData[0].data[1] = tsArr[tsArr.length -1]
-      console.log(chartData[0].data)
+      console.log(chartData)
+      chartData[1].data[1] = tsArr[tsArr.length -1]
+      chartData[0].data[0] = tcArr[tcArr.length - 1]
+      console.log(chartData[1].data)
     },
     changeChartType: (tcArr, tsArr, age) => {
       const chartData = myChart.data.datasets
       if(chartData[1].type !== 'bar') {
         chartData[1].type = 'bar'
         chartData[0].type = 'bar'
-        document.querySelector('.change-chart-type').innerHTML = 'Line Chart'
+        document.querySelector('.change-chart-type').innerHTML = 'View After Tax Comparison'
         RothUI.displayBarChart(tcArr, tsArr)
       } 
       else {
         chartData[1].type = 'line'
         chartData[0].type = 'line'
-        document.querySelector('.change-chart-type').innerHTML = 'Bar Chart'
+        document.querySelector('.change-chart-type').innerHTML = 'View Total at Retirement'
         RothUI.displayLineChart(tcArr, tsArr, age)
       }
     },
@@ -140,6 +155,22 @@ const RothUI = (function(){
         loaderAnim.style.transition = 'all .2s';
         loaderAnim.style.display = 'none';
       },1500)
+    },
+    displaySummary: (tcArr, tsArr, ytp, tc) => {
+      selectors.summaryContainer.innerHTML = `
+      <h2 class="tcalc-summary">Summary</h2>
+      <p >Over the course of your contributions will be <span class="accent-color">$${RothUI.numberWithCommas(parseFloat(tc))}</span> (including your starting balance). <br></br>
+      Given the expected rate of return on your investments we estimate that you could have <span class="accent-color">$${RothUI.numberWithCommas(parseFloat(tcArr[tcArr.length - 1]))}</span> in your <span class="bold-text">Roth IRA</span>, and <span class="accent-color">$${RothUI.numberWithCommas(parseFloat(tsArr[tsArr.length - 1]))}</span> in your <span class="bold-text">Traditional IRA</span>. This will occur over the ${ytp} years of payments on the account.
+      `
+      if(tcArr[tcArr.length - 1] > tsArr[tsArr.length - 1]) {
+        selectors.summaryContainer.innerHTML += `
+        <br>
+        This means that your <span class="bold-text">Roth IRA</span> could be worth <span class="accent-color">$${RothUI.numberWithCommas(parseFloat(tcArr[tcArr.length - 1] - tsArr[tsArr.length - 1]))}</span> more than your <span class="bold-text">Traditional IRA</span> at the point of retirement</p>
+        `
+      }
+    },
+    numberWithCommas: (x) => {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
     createReport: () => {
       // Create Report for

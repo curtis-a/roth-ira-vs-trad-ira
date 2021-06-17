@@ -13,7 +13,6 @@ const RothCalculations = (function(){
       // Calculations
       if(count >= 50 && maxCont.checked === true && ac < 7000) {
         ac = ac + 1000
-        console.log(ac)
       }
    
       const yearlyPaymentTrad = parseFloat(ac + sbt);
@@ -23,19 +22,18 @@ const RothCalculations = (function(){
       const totalIncreaseRoth = parseFloat(interestRoth + yearlyPaymentRoth); 
       const totalIncreaseTrad = parseFloat(interestTrad + yearlyPaymentTrad); 
       const totalTrad = parseFloat(totalIncreaseTrad - (totalIncreaseTrad * rtr));
-      console.log(totalIncreaseRoth, totalTrad)
+
       rorArr.push(parseFloat(interestRoth.toFixed(2)));
       tcArr.push(Math.round(totalIncreaseRoth.toFixed(2)));
       tsArr.push(Math.round(totalTrad.toFixed(2)))
+
       ytp = ytp - 1;
       count++
-      // Reccursion
+
       if(ytp >= 0){ RothCalculations.RothVsTradCalculations(ytp, ror, ac, totalIncreaseTrad, totalIncreaseRoth, mtr, rtr, count) } 
       else { 
-        console.log(tcArr)
-        console.log(tsArr)
-        console.log(`Roth IRA Calc: ${tcArr[tcArr.length - 1]}`)
-        console.log(`Traditional IRA Calc: ${tsArr[tsArr.length - 1]}`)
+        // console.log(`Roth IRA Calc: ${tcArr[tcArr.length - 1]}`)
+        // console.log(`Traditional IRA Calc: ${tsArr[tsArr.length - 1]}`)
         return 
       }
     }, 

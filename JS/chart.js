@@ -1,18 +1,17 @@
 var ctx = document.getElementById('myChart').getContext('2d');
-Chart.defaults.elements.line.fill = true;
 Chart.defaults.elements.line.borderRadius = "180px";
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: [],
-        datasets: [{
+const config = {
+  data: {
+    labels: [],
+    datasets: [{
+            type: 'bar',
             label: 'Roth IRA',
             data: [1, 5, 10, 12, 15, 18],
             backgroundColor: "rgba(54, 162, 235, 0.3)",
             borderWidth: 2,
             tension: 0.2
         }, {
-          type: 'line',
+          type: 'bar',
           label: `Traditional IRA`,
           data: [1, 2, 4, 5, 6, 7, 8, 9],
           backgroundColor: 'rgba(51, 121, 1, 0.6)',
@@ -21,21 +20,23 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: {
           title: {
             display: true,
-          }
+          },
+          color: 'red'
         }
       },
-      responsive: true,
-      maintaimAspectRation: false,
-        scales: {
-            y: {
-              beginAtZero: true,
-            }
+      scales: {
+        y: {
+          beginAtZero: true,
+          }
         }
     }
-});
-
-myChart.options.plugins.legend.position = 'right';
+};
+var myChart = new Chart(ctx, config)
+myChart.options.plugins.legend.position = 'top';
+myChart.options.plugins.legend.align = 'center';

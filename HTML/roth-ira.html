@@ -25,7 +25,7 @@
             <label for="sb" class="calc-label">Starting Balance</label>
             <div class="tooltip-container">
               <span class="tooltip-icon">?</span>
-              <div class="tooltip-content tooltip-content__left">
+              <div class="tooltip-content ttc-sb tooltip-content__left">
                 <span class="tooltip-close">x</span>
                 <p class="tooltip-text">Please enter your current balance of your Roth IRA/ Traditional IRA. If you do not already have you feel free to leave it at zero. Alternitavely enter the balance you plan to start off</p>
               </div>
@@ -41,9 +41,9 @@
             <label for="ac" class="calc-label">Annual Contribution</label>
             <div class="tooltip-container">
               <span class="tooltip-icon">?</span>
-              <div class="tooltip-content tooltip-content__right">
+              <div class="tooltip-content ttc-ac tooltip-content__right">
                 <span class="tooltip-close">x</span>
-                <p class="tooltip-text">Please enter your annual contribution to your Roth IRA/ Traditional IRA. For the year 2020/2021 the maximum contribution is $6,000. <br>Please note that the contributions are considered after tax contributions. This affects how the graph below is displayed. In reality the Traditional IRA is not taxed until the point of withdrawral</p>
+                <p class="tooltip-text">Please enter your annual contribution to your Roth IRA/ Traditional IRA. For the year 2020/2021 the maximum contribution is $6,000. <br><br> Please note that the contributions are considered after tax contributions. This affects how the graph below is displayed. In reality the Traditional IRA is not taxed until the point of withdrawral</p>
               </div>
             </div>
           </div> 
@@ -74,7 +74,7 @@
             <label for="retirement" class="calc-label">Expected Retirement Age</label>
             <div class="tooltip-container">
               <span class="tooltip-icon">?</span>
-              <div class="tooltip-content tooltip-content__right">
+              <div class="tooltip-content ttc-era tooltip-content__right">
                 <span class="tooltip-close">x</span>
                 <p class="tooltip-text">Enter your expected age of retirement. To withdraw from the Traditional IRA you must be 59 1/2 years old. Withdrwaring earlier will result in you facing a tax penalty</p>
               </div>
@@ -91,15 +91,15 @@
             <label for="ror" class="calc-label">Expected Rate of Return</label>
                         <div class="tooltip-container">
               <span class="tooltip-icon">?</span>
-              <div class="tooltip-content tooltip-content__left">
+              <div class="tooltip-content ttc-ror tooltip-content__left">
                 <span class="tooltip-close">x</span>
-                <p class="tooltip-text">Enter the expected rate of return on your investments. We have capped the rate of return at 12% as we feel this is the highest reasonable amount. <br>
+                <p class="tooltip-text">Enter the expected rate of return on your investments. We have capped the rate of return at 20% to keep this amount conservative. We reccomend choosing a rate of return between 4% and 12% <br><br>
                 Your rate of return will vary on a year to year basis depending on how your investments build.
                 </p>
               </div>
             </div>
           </div> 
-          <div class="input-container" data-error="Please enter a rate of return between 0 - 12%">
+          <div class="input-container" data-error="Please enter a rate of return between 0 - 20%">
             <div class="before-input-box">%</div>
             <input type="number" class="calc-input ror" steps='0.1' id="ror" value='10' >
           </div>
@@ -109,7 +109,7 @@
             <label for="mtr" class="calc-label">Marginal Tax Rate</label> 
                         <div class="tooltip-container">
               <span class="tooltip-icon">?</span>
-              <div class="tooltip-content tooltip-content__right">
+              <div class="tooltip-content ttc-mtr tooltip-content__right">
                 <span class="tooltip-close">x</span>
                 <p class="tooltip-text">Please enter your marginal tax rate. The highest marginal tax rate as of 2020/2021 is 37%. If you feel you will have a different tax rate at the point of retirement, please enter this in the advanced dropdown section</p>
               </div>
@@ -141,11 +141,12 @@
                   <span class="bambridge-custom-checkbox"></span>
                 </div>
                 <label for="maximise-contributions input-label" class="radio-label">Maximise Contributions</label>
-                <div class="tooltip-container" style="margin-left: 20px;">
+                <div class="tooltip-container" style="margin-left: 80px;">
                   <span class="tooltip-icon">?</span>
-                  <div class="tooltip-content tooltip-content__right">
+                  <div class="tooltip-content ttc-mc tooltip-content__right">
                     <span class="tooltip-close">x</span>
-                    <p class="tooltip-text">Please enter your marginal tax rate. The highest marginal tax rate as of 2020/2021 is 37%. If you feel you will have a different tax rate at the point of retirement, please enter this in the advanced dropdown section</p>
+                    <p class="tooltip-text">Checking this button will add maximum contributions once you have reached the threshold age until retirement age. <br><br>
+                      In 2021/2022 this means that you are 50 years old and will contribute an extra $1000 (totaling $7000) past this age.</p>
                   </div>
                 </div>
               </div>
@@ -156,9 +157,9 @@
               <label for="rtr" class="calc-label">Expected Retirement Tax Rate</label> 
               <div class="tooltip-container">
                 <span class="tooltip-icon">?</span>
-                <div class="tooltip-content tooltip-content__right">
+                <div class="tooltip-content ttc-ertr tooltip-content__right">
                   <span class="tooltip-close">x</span>
-                  <p class="tooltip-text">Please enter your marginal tax rate. The highest marginal tax rate as of 2020/2021 is 37%. If you feel you will have a different tax rate at the point of retirement, please enter this in the advanced dropdown section</p>
+                  <p class="tooltip-text">Please enter your estimated tax rate for retirement. This helps us calculate how your Traditional IRA will compare to a Roth IRA at retirement age.</p>
                 </div>
               </div>
             </div> 
@@ -169,38 +170,20 @@
           </div>
         </div>
       </div>
-      <div id="submit-btn__container">
-        <button id="submit">Calculate</button>
-      </div>
     </form>
     <br><br>
     <div class="roth-ira-results">
-      <div id="tax-calc-loader">
-        <div class="loader-text">
-        <p class='load-title'>Bambridge <span class="highlight-color">|</span> Accountants</p>
-          <span class="minus loader-icon">-</span>
-          <span class="plus loader-icon">+</span>
-          <span class="multiply loader-icon">x</span>
-          <span class="divide loader-icon">÷</span>
-          <span class="divide-2 loader-icon">÷</span>
-          <span class="multiply-2 loader-icon">x</span>
-          <span class="minus-3 loader-icon">-</span>
-          <span class="plus-2 loader-icon">+</span>
-          <span class="multiply-3 loader-icon">x</span>
-          <span class="divide-5 loader-icon">÷</span>
-          <span class="divide-4 loader-icon">÷</span>
-          <span class="multiply-4 loader-icon">x</span>
-        </div>
-      </div>
-      <br>
       <div id="tcalc__summary-container">
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque facilis consequatur dignissimos dolorum repellendus aliquid. Non maxime, expedita ut beatae quas illum culpa facere sunt tempora molestias assumenda cumque quisquam eum quidem quia ex laborum fugit explicabo pariatur tenetur vero consequuntur in. Unde dolorem repellat omnis dicta quidem blanditiis modi. Dolor laudantium, quibusdam ut aut corporis porro ex, soluta rem aliquid, omnis veritatis voluptatibus. Saepe sed labore, magni aspernatur fuga, quia omnis nulla accusamus enim unde fugit suscipit commodi quis voluptatem nostrum dolor maiores cum minus nesciunt totam dignissimos officia. Quidem ducimus, maiores voluptatibus pariatur necessitatibus voluptates et itaque, laudantium fugit deserunt nulla, nemo dolorem consectetur accusantium saepe dignissimos nobis? Maiores sequi dicta ullam repellat</p>
-      </div>
-      <div class="chart-container" width="600" height="400px">
-        <canvas id="myChart" width="125" height="45"></canvas>
+        
       </div>
       <div class="barChart-btn">
-        <button class="change-chart-type">Bar Chart</button>
+        <button class="change-chart-type">View After Tax Comparison</button>
+      </div>
+      
+      <div class="chart-container" style="max-width: 100%; height: 290px; margin: auto">
+        <canvas id="myChart"></canvas>
+      </div>
+      <div class="barChart-btn">
       </div>
       <div class="figures-container">
         <div class="catch-up-contributions"></div>
@@ -210,7 +193,7 @@
     </div>
     <div class="tcalc-warning">
       <p class="warning-content">
-        <span class="text-bold">IMPORTANT!</span> The representation of the Traditional IRA would appear slightly different to this in reality. This is due to the manner in which Traditional IRA's are taxed. Rather than being taxed across the years of contributions. Traditional ISA's are not taxed until withdrawral, at which point they are taxed at your marginal tax rate.
+        <span class="text-bold">IMPORTANT!</span> The representation of the Traditional IRA would appear slightly different to this in reality. This is due to the manner in which Traditional IRA's are taxed. Rather than being taxed across the years of contributions. Traditional IRA's are not taxed until withdrawral, at which point they are taxed at your marginal tax rate.
       </p>
       </div>
   </div>
