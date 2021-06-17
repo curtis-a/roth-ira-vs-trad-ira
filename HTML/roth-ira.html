@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/CSS/roth-ira.css">
+  <link rel="stylesheet" href="/CSS/utilities.css">
   <link rel="stylesheet" href="/CSS/animation.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <title>Roth IRA Calculator</title>
@@ -42,7 +43,7 @@
               <span class="tooltip-icon">?</span>
               <div class="tooltip-content tooltip-content__right">
                 <span class="tooltip-close">x</span>
-                <p class="tooltip-text">Please enter your current balance of your Roth IRA/ Traditional IRA. If you do not already have you feel free to leave it at zero. Alternitavely enter the balance you plan to start off</p>
+                <p class="tooltip-text">Please enter your annual contribution to your Roth IRA/ Traditional IRA. For the year 2020/2021 the maximum contribution is $6,000. <br>Please note that the contributions are considered after tax contributions. This affects how the graph below is displayed. In reality the Traditional IRA is not taxed until the point of withdrawral</p>
               </div>
             </div>
           </div> 
@@ -60,7 +61,7 @@
               <span class="tooltip-icon">?</span>
               <div class="tooltip-content tooltip-content__left">
                 <span class="tooltip-close">x</span>
-                <p class="tooltip-text">Please enter your current balance of your Roth IRA/ Traditional IRA. If you do not already have you feel free to leave it at zero. Alternitavely enter the balance you plan to start off</p>
+                <p class="tooltip-text">Enter your current age</p>
               </div>
             </div>
           </div>
@@ -75,7 +76,7 @@
               <span class="tooltip-icon">?</span>
               <div class="tooltip-content tooltip-content__right">
                 <span class="tooltip-close">x</span>
-                <p class="tooltip-text">Please enter your current balance of your Roth IRA/ Traditional IRA. If you do not already have you feel free to leave it at zero. Alternitavely enter the balance you plan to start off</p>
+                <p class="tooltip-text">Enter your expected age of retirement. To withdraw from the Traditional IRA you must be 59 1/2 years old. Withdrwaring earlier will result in you facing a tax penalty</p>
               </div>
             </div>
           </div> 
@@ -92,7 +93,9 @@
               <span class="tooltip-icon">?</span>
               <div class="tooltip-content tooltip-content__left">
                 <span class="tooltip-close">x</span>
-                <p class="tooltip-text">Please enter your current balance of your Roth IRA/ Traditional IRA. If you do not already have you feel free to leave it at zero. Alternitavely enter the balance you plan to start off</p>
+                <p class="tooltip-text">Enter the expected rate of return on your investments. We have capped the rate of return at 12% as we feel this is the highest reasonable amount. <br>
+                Your rate of return will vary on a year to year basis depending on how your investments build.
+                </p>
               </div>
             </div>
           </div> 
@@ -108,13 +111,61 @@
               <span class="tooltip-icon">?</span>
               <div class="tooltip-content tooltip-content__right">
                 <span class="tooltip-close">x</span>
-                <p class="tooltip-text">Please enter your current balance of your Roth IRA/ Traditional IRA. If you do not already have you feel free to leave it at zero. Alternitavely enter the balance you plan to start off</p>
+                <p class="tooltip-text">Please enter your marginal tax rate. The highest marginal tax rate as of 2020/2021 is 37%. If you feel you will have a different tax rate at the point of retirement, please enter this in the advanced dropdown section</p>
               </div>
             </div>
           </div> 
           <div class="input-container" data-error="Highest tax rate for the US is 37%">
             <div class="before-input-box">%</div>
-            <input type="number" class="calc-input mtr" id="mtr" value='37' >
+            <input type="number" class="calc-input mtr" id="mtr" value='24' >
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="checklist-btn__adv-settings">
+        <div class="radio-btn__container">
+          <div class="checkbox-control">
+            <input type="checkbox" name="adv-settings" id="adv-settings">
+            <span class="bambridge-custom-checkbox"></span>
+          </div>
+          <label for="adv-settings input-label" class="radio-label checkbox-label">Use Advanced Settings</label>
+        </div>
+      </div>
+      <div id="advanced-settings__container" class="dropdown-closed">
+        <div class="two-input-row adv-set">
+          <div class="radio-btn__container sl-plan__box">
+            <div class="checklist-btn__adv-settings">
+              <div class="maximise-contributions__container">
+                <div class="checkbox-control">
+                  <input type="checkbox" name="maximise-contributions" id="maximise-contributions">
+                  <span class="bambridge-custom-checkbox"></span>
+                </div>
+                <label for="maximise-contributions input-label" class="radio-label">Maximise Contributions</label>
+                <div class="tooltip-container" style="margin-left: 20px;">
+                  <span class="tooltip-icon">?</span>
+                  <div class="tooltip-content tooltip-content__right">
+                    <span class="tooltip-close">x</span>
+                    <p class="tooltip-text">Please enter your marginal tax rate. The highest marginal tax rate as of 2020/2021 is 37%. If you feel you will have a different tax rate at the point of retirement, please enter this in the advanced dropdown section</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="retirement-tax-rate form-group">
+            <div class="label-container">
+              <label for="rtr" class="calc-label">Expected Retirement Tax Rate</label> 
+              <div class="tooltip-container">
+                <span class="tooltip-icon">?</span>
+                <div class="tooltip-content tooltip-content__right">
+                  <span class="tooltip-close">x</span>
+                  <p class="tooltip-text">Please enter your marginal tax rate. The highest marginal tax rate as of 2020/2021 is 37%. If you feel you will have a different tax rate at the point of retirement, please enter this in the advanced dropdown section</p>
+                </div>
+              </div>
+            </div> 
+            <div class="input-container" data-error="Highest tax rate for the US is 37%">
+              <div class="before-input-box">%</div>
+              <input type="number" class="calc-input rtr" id="rtr" value='24' >
+            </div>
           </div>
         </div>
       </div>
@@ -142,6 +193,9 @@
         </div>
       </div>
       <br>
+      <div id="tcalc__summary-container">
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque facilis consequatur dignissimos dolorum repellendus aliquid. Non maxime, expedita ut beatae quas illum culpa facere sunt tempora molestias assumenda cumque quisquam eum quidem quia ex laborum fugit explicabo pariatur tenetur vero consequuntur in. Unde dolorem repellat omnis dicta quidem blanditiis modi. Dolor laudantium, quibusdam ut aut corporis porro ex, soluta rem aliquid, omnis veritatis voluptatibus. Saepe sed labore, magni aspernatur fuga, quia omnis nulla accusamus enim unde fugit suscipit commodi quis voluptatem nostrum dolor maiores cum minus nesciunt totam dignissimos officia. Quidem ducimus, maiores voluptatibus pariatur necessitatibus voluptates et itaque, laudantium fugit deserunt nulla, nemo dolorem consectetur accusantium saepe dignissimos nobis? Maiores sequi dicta ullam repellat</p>
+      </div>
       <div class="chart-container" width="600" height="400px">
         <canvas id="myChart" width="125" height="45"></canvas>
       </div>

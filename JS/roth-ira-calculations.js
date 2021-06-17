@@ -4,28 +4,43 @@ const RothCalculations = (function(){
       const yearsToPay = retirement - age;
       return (ac * yearsToPay) + sb;
     },
-    RothVsTradCalculations: (ytp, ror, ac, sb, mtr) => {
+    RothVsTradCalculations: (ytp, ror, ac, sbt, sbr, mtr, rtr, age) => {
       const rorArr = DataCtrl.getArrays().rateOfReturnArr;
       const tcArr = DataCtrl.getArrays().totalContributionsArr;
       const tsArr = DataCtrl.getArrays().tsArr;
-      const totalRoth = DataCtrl.getArrays().totalRothIra;
-      const totalTrad = DataCtrl.getArrays().totalTradIra;
+      const maxCont = RothUI.getSelectors().maximiseContributionsCheck
+      let count = age
       // Calculations
-      const yearlyPayment = parseFloat(ac + sb);
-      const interest = parseFloat(yearlyPayment * ror);
-      const totalIncrease = parseFloat(interest + yearlyPayment); 
-      const taxableSavings = parseFloat(totalIncrease - (totalIncrease * mtr));
-      rorArr.push(parseFloat(interest.toFixed(2)));
-      tcArr.push(Math.round(totalIncrease.toFixed(2)));
-      tsArr.push(Math.round(taxableSavings.toFixed(2)))
+      if(count >= 50 && maxCont.checked === true && ac < 7000) {
+        ac = ac + 1000
+        console.log(ac)
+      }
+   
+      const yearlyPaymentTrad = parseFloat(ac + sbt);
+      const yearlyPaymentRoth = parseFloat(ac + sbr);
+      const interestTrad = parseFloat(yearlyPaymentTrad * ror);
+      const interestRoth = parseFloat(yearlyPaymentRoth * ror);
+      const totalIncreaseRoth = parseFloat(interestRoth + yearlyPaymentRoth); 
+      const totalIncreaseTrad = parseFloat(interestTrad + yearlyPaymentTrad); 
+      const totalTrad = parseFloat(totalIncreaseTrad - (totalIncreaseTrad * rtr));
+      console.log(totalIncreaseRoth, totalTrad)
+      rorArr.push(parseFloat(interestRoth.toFixed(2)));
+      tcArr.push(Math.round(totalIncreaseRoth.toFixed(2)));
+      tsArr.push(Math.round(totalTrad.toFixed(2)))
       ytp = ytp - 1;
+      count++
       // Reccursion
-      if(ytp >= 0){ RothCalculations.RothVsTradCalculations(ytp, ror, ac, totalIncrease, mtr) } 
+      if(ytp >= 0){ RothCalculations.RothVsTradCalculations(ytp, ror, ac, totalIncreaseTrad, totalIncreaseRoth, mtr, rtr, count) } 
       else { 
+        console.log(tcArr)
+        console.log(tsArr)
         console.log(`Roth IRA Calc: ${tcArr[tcArr.length - 1]}`)
         console.log(`Traditional IRA Calc: ${tsArr[tsArr.length - 1]}`)
         return 
       }
+    }, 
+    maximumContributions: (age, retirementAge) => {
+       
     }
   }
 })()

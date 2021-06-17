@@ -7,13 +7,18 @@ const RothUI = (function(){
     retirementAge: parseFloat((document.querySelector('.retirement').value) - 1),
     rateOfReturn: parseFloat((document.querySelector('.ror').value) / 100),
     marginalTaxRate: parseFloat((document.querySelector('.mtr').value) / 100),
+    marginalTaxRateInput: document.querySelector('.mtr'),
+    retirementTaxRate: parseFloat(document.querySelector('.rtr').value / 100),
+    retirementTaxRateInput: document.querySelector('.rtr'),
     rothTotal: document.querySelector('.roth-ira-total'),
     taxableSavingsTotal: document.querySelector('.taxable-savings-total'),
     inputs: Array.from(document.querySelectorAll('.calc-input')),
     tooltips: Array.from(document.querySelectorAll('.tooltip-container')),
-    barChartBtn: document.querySelector('.barChart-btn')
+    barChartBtn: document.querySelector('.barChart-btn'),
+    advSettings: document.getElementById('adv-settings'),
+    advSettingsContainer: document.getElementById('advanced-settings__container'),
+    maximiseContributionsCheck: document.getElementById('maximise-contributions')
   }
-
   
   return {
     getSelectors: () => {
@@ -42,6 +47,11 @@ const RothUI = (function(){
     inputError: (x) => {
       x.parentElement.classList.add('input-error');
       document.querySelector('#submit').disabled = true;
+    },
+    updateRetirementTaxRate: (e) => {
+      if(selectors.marginalTaxRateInput.value < selectors.retirementTaxRateInput.value) {
+        selectors.retirementTaxRateInput.value = selectors.marginalTaxRateInput.value 
+      }
     },
     resetValues: () => {
       selectors.startingBalance = parseFloat(document.querySelector('.sb').value)
@@ -136,7 +146,7 @@ const RothUI = (function(){
     },
     createPaginationButtons: () => {
       // Create PaginationButtons
-    },
+    }, 
     tablePagination: () => {
       // Handle Table Pagination
     },

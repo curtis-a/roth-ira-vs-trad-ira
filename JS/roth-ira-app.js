@@ -13,12 +13,24 @@ const App = (function(RothCalculations, RothUI, DataCtrl){
       let v = i.value
       i.addEventListener('blur', RothUI.checkErrors(i, v));
     })
-    ui.tooltips.forEach(tt => {
-      tt.addEventListener('click', RothUI.displayToolTip)
-    })
+    ui.tooltips.forEach(tt => tt.addEventListener('click', RothUI.displayToolTip))
     ui.barChartBtn.addEventListener('click', e => {
       RothUI.changeChartType(DataCtrl.getArrays().totalContributionsArr, DataCtrl.getArrays().tsArr, ui.age)
       e.preventDefault()
+    })
+    ui.marginalTaxRateInput.addEventListener('blur', RothUI.updateRetirementTaxRate);
+    ui.advSettings.addEventListener('change', e => {
+      if(ui.advSettings.checked){
+        ui.advSettingsContainer.classList.remove('dropdown-closed');
+        ui.advSettingsContainer.classList.add('dropdown-active');
+        if(ui.advSettingsContainer.classList.contains('dropdown-active')) {
+          ui.advSettingsContainer.style.maxHeight = ui.advSettingsContainer.scrollHeight + 'px';
+        }
+      } else {
+        ui.advSettingsContainer.classList.remove('dropdown-active');
+        ui.advSettingsContainer.classList.add('dropdown-closed');
+        ui.advSettingsContainer.style.maxHeight = 0;
+      }
     })
   }
 
@@ -31,7 +43,7 @@ const App = (function(RothCalculations, RothUI, DataCtrl){
     const yearsToPay = ui.retirementAge - ui.age;
     // Calculations
     RothCalculations.totalContributions(ui.age, ui.retirementAge, ui.annualContributions, ui.startingBalance);
-    RothCalculations.RothVsTradCalculations(yearsToPay, ui.rateOfReturn, ui.annualContributions, ui.startingBalance, ui.marginalTaxRate);
+    RothCalculations.RothVsTradCalculations(yearsToPay, ui.rateOfReturn, ui.annualContributions, ui.startingBalance, ui.startingBalance, ui.marginalTaxRate, ui.retirementTaxRateInput.value / 100, ui.age);
     RothUI.displayChart(tcArr, tsArr, ui.age);
     console.log(tcArr, tsArr)
   }

@@ -1,0 +1,128 @@
+/* Checkbox Styles */
+.checkbox-control {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  height: 100%;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow: visible;
+}
+
+.checkbox-control input {
+  position: absolute;
+  opacity:0;
+  left: 0;
+  top: 6px;
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  z-index: 5;
+}
+
+.bambridge-custom-checkbox {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 2px;
+  background-color: #eee;
+}
+
+.checkbox-control:hover input ~ .bambridge-custom-checkbox  {
+  background-color: #ccc;
+}
+
+.checkbox-control input:checked ~ .bambridge-custom-checkbox {
+  background-color: #ba9f2a;
+}
+
+input::after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+.checkbox-control input:checked ~ .bambridge-custom-checkbox::after {
+  display: block;
+}
+
+.checkbox-control .bambridge-custom-checkbox::after {
+  content: '';
+  left: 20px;
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.checkbox-label, .radio-label {
+  font-weight: 100 !important;
+  text-transform: capitalize !important;
+  font-size: .8rem;
+  margin-left: 10px;
+}
+
+.adv-set {
+  align-items: center  !important;
+  margin-top: 10px;
+}
+
+.dropdown-closed {
+  display: none;
+}
+
+.radio-btn__container, .maximise-contributions__container {
+  display: flex;
+  align-items: center;
+  height: 22px;
+  
+}
+
+.radio-btn__container {
+  margin-bottom: 20px;
+}
+
+#advanced-settings__container {
+  overflow: hidden;
+  max-height: 0;
+  transition: all 0.5s
+}
+
+.sl-plan__box {
+  background: #ffffff;
+  border: #ccc 1px solid;
+  height: auto;
+  max-width: 300px;
+  padding: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  position: relative;
+}
+
+.sl-plan__box label {
+  margin-left: 10px;  
+  line-height: 1.1rem;
+}
+
+.checklist-btn__adv-settings {
+  margin-left: 2px
+}
+
+@media only screen and (min-width: 1000px) {
+  .sl-plan__box {
+    width: 100%
+  }
+}
